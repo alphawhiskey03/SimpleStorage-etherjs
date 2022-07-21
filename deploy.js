@@ -2,7 +2,7 @@ const ethers = require('ethers')
 const fs = require('fs-extra')
 require('dotenv').config()
 async function main() {
-    //Provide the RCP url of the blockhain node
+    //Provide the RCP url of the blocchain node
     console.log('Hello, world!')
     const provider = new ethers.providers.JsonRpcProvider(process.env.RPC_URL)
 
@@ -11,6 +11,7 @@ async function main() {
 
     // getting the abi
     const abi = fs.readFileSync('./SimpleStorage_sol_SimpleStorage.abi', 'utf8')
+
     // getting binary
     const binary = fs.readFileSync(
         './SimpleStorage_sol_SimpleStorage.bin',
@@ -21,6 +22,7 @@ async function main() {
     console.log('Deploying the contract...')
     const contract = await contractFactory.deploy()
 
+    // Here with the below line we wait for 1 block confirmation
     await contract.deployTransaction.wait(1)
     console.log(contract.address)
     const currentFavoriteNumber = await contract.retreive()
