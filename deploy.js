@@ -3,7 +3,6 @@ const fs = require('fs-extra')
 require('dotenv').config()
 async function main() {
     //Provide the RCP url of the blocchain node
-    // HTTP://127.0.0.1:7545
     console.log('Hello, world!')
     const provider = new ethers.providers.JsonRpcProvider(process.env.RPC_URL)
 
